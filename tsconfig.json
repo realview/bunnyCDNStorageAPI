@@ -4,8 +4,11 @@
       "target": "ESNext",
       "declaration": true,
       "outDir": "./dist",
-      "moduleResolution": "nodenext"
+      "moduleResolution": "nodenext",
+      
+      
     },
+    "main": "dist/index.js",
     "include": [
       "src/**/*"
     ]
