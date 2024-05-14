@@ -6,7 +6,6 @@
     "outDir": "./dist",
     "moduleResolution": "nodenext"
   },
-  "main": "dist/index.js",
   "include": [
     "src/**/*"
   ]

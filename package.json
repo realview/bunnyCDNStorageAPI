@@ -7,6 +7,7 @@
     "scripts": {
         "build": "tsc"
     },
+    "main": "dist/index.js",
     "devDependencies": {
         "@types/node": "^20.12.12",
         "ts-node": "^10.9.2",
