@@ -1,15 +1,13 @@
 {
-    "compilerOptions": {
-      "module": "NodeNext",
-      "target": "ESNext",
-      "declaration": true,
-      "outDir": "./dist",
-      "moduleResolution": "nodenext",
-      
-      
-    },
-    "main": "dist/index.js",
-    "include": [
-      "src/**/*"
-    ]
-  }
+  "compilerOptions": {
+    "module": "NodeNext",
+    "target": "ESNext",
+    "declaration": true,
+    "outDir": "./dist",
+    "moduleResolution": "nodenext"
+  },
+  "main": "dist/index.js",
+  "include": [
+    "src/**/*"
+  ]
+}
