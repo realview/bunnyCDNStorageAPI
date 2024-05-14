@@ -1,10 +1,15 @@
 {
     "name": "bunny-cdn-storage-api",
-    "version": "1.0.0", 
+    "version": "1.0.0",
     "description": "Minialistic BunnyCDN Storage API Wrapper for Node.js",
     "author": "Derek Chan",
     "license": "MIT",
+    "scripts": {
+        "build": "tsc"
+    },
     "devDependencies": {
-        "@types/node": "20.x"
+        "@types/node": "^20.12.12",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.4.5"
     }
 }
