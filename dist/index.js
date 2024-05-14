@@ -1,5 +1,7 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const defaultBaseUrl = 'https://storage.bunnycdn.com';
-export default class BunnyCDNStorage {
+class BunnyCDNStorage {
     apiKey;
     storageZoneName;
     region;
@@ -44,3 +46,4 @@ export default class BunnyCDNStorage {
         return path ? `${storageURL}/${path}` : storageURL;
     }
 }
+exports.default = BunnyCDNStorage;
