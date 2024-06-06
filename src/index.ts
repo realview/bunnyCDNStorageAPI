@@ -2,7 +2,7 @@ const defaultBaseUrl: string = 'https://storage.bunnycdn.com';
 
 export default class BunnyCDNStorage {
   private apiKey: string;
-  private storageZoneName: string; 
+  private storageZoneName: string;
   private region?: string;
 
   constructor(apiKey: string, storageZoneName: string, region?: string) {
@@ -41,6 +41,20 @@ export default class BunnyCDNStorage {
   async upload(fileBuffer: Buffer | string, remotePath?: string) {
     const url = this.buildUrl(remotePath);
     return this.fetchRequest(url, 'PUT', fileBuffer);
+  }
+
+  async uploadFromUrl(url: string, remotePath?: string) {
+    try {
+      let res = await fetch(url)
+      if (!res.ok) {
+        throw new Error(`Failed to fetch file from URL: ${url}. Status code: ${res.status}`);
+      }
+      let fileArrayBuffer = await res.arrayBuffer()
+      const fileBuffer: Buffer = Buffer.from(fileArrayBuffer)
+      return this.upload(fileBuffer, remotePath);
+    } catch (error) {
+      throw new Error(`Failed to fetch file from URL: ${url}. Error: ${error}`);
+    }
   }
 
   download(filePath: string) {
