@@ -8,6 +8,7 @@ export default class BunnyCDNStorage {
     list(path?: string): Promise<Response>;
     delete(path?: string): Promise<Response>;
     upload(fileBuffer: Buffer | string, remotePath?: string): Promise<Response>;
+    uploadFromUrl(url: string, remotePath?: string): Promise<Response>;
     download(filePath: string): Promise<Response>;
     private buildUrl;
 }

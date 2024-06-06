@@ -36,6 +36,20 @@ class BunnyCDNStorage {
         const url = this.buildUrl(remotePath);
         return this.fetchRequest(url, 'PUT', fileBuffer);
     }
+    async uploadFromUrl(url, remotePath) {
+        try {
+            let res = await fetch(url);
+            if (!res.ok) {
+                throw new Error(`Failed to fetch file from URL: ${url}. Status code: ${res.status}`);
+            }
+            let fileArrayBuffer = await res.arrayBuffer();
+            const fileBuffer = Buffer.from(fileArrayBuffer);
+            return this.upload(fileBuffer, remotePath);
+        }
+        catch (error) {
+            throw new Error(`Failed to fetch file from URL: ${url}. Error: ${error}`);
+        }
+    }
     download(filePath) {
         const url = this.buildUrl(filePath);
         return fetch(url);
