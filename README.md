@@ -1,50 +1,53 @@
 # BunnyCDNStorage 
 
-BunnyCDNStorage is a Node.js class for interacting with the BunnyCDN Storage API using Fetch.
+BunnyCDNStorageAPI is a Node.js class for interacting with the BunnyCDN Storage API using Fetch.
 
 ## Installation
 
 To use BunnyCDNStorage in your Node.js project, you can add it as a dependency in your `package.json` file:
 
 ```bash
-npm install github:realview/BunnyCDNStorage
+npm install github:realview/BunnyCDNStorageAPI
 ```
 ## USAGE
 
-```javascript
+```typescript
 
-import BunnyCDNStorage from 'BunnyCDNStorage';
+import bunnyCDNStorage from 'bunny-cdn-storage-api'
+import fs from 'fs'
 
-async function main() {
   // Initialize BunnyCDNStorage with your API key and storage zone name
-  const storage = new BunnyCDNStorage('your-api-key', 'your-storage-zone');
+  const storage = new BunnyCDNStorage('your-api-key', 'your-storage-zone','your-region');
 
-  try {
+
     // List files in the root directory
-    const listResponse = await storage.list();
+    let listResponse = await storage.list();
     console.log('Files in the root directory:', listResponse.data);
 
-    // Upload a file
-    const filePath = '/path/to/your/file.txt';
-    const remotePath = 'folder/file.txt'; // Optional: Remote path to upload the file to
-    const uploadResponse = await storage.upload(filePath, remotePath);
+    // Upload a file biffer
+    let filePath = '/path/to/your/file.txt';
+    let buffer = fs.readFileSync(filePath)
+    let remotePath = 'folder/file.txt'; 
+    let uploadResponse = await storage.upload(buffer, remotePath);
+    console.log('File uploaded successfully:', uploadResponse.data);
+
+    // Upload from remote URL
+
+    let imageUrl = "https://url-to-image.com/image.jpg"
+   
+    uploadResponse = await storage.uploadFromUrl(imageUrl, remotePath);
     console.log('File uploaded successfully:', uploadResponse.data);
 
     // Download a file
-    const downloadPath = 'folder/file.txt';
-    const downloadResponse = await storage.download(downloadPath);
+    let downloadPath = 'folder/file.txt';
+    let downloadResponse = await storage.download(downloadPath);
     // Handle the downloaded file
 
     // Delete a file
-    const deletePath = 'folder/file.txt';
-    const deleteResponse = await storage.delete(deletePath);
+    let deletePath = 'folder/file.txt';
+    let deleteResponse = await storage.delete(deletePath);
     console.log('File deleted successfully:', deleteResponse.data);
-  } catch (error) {
-    console.error('Error:', error);
-  }
-}
-
-main();
+ 
 ```
 
 
